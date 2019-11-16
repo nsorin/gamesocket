@@ -1,0 +1,9 @@
+{
+  "include": [
+    "src/**/*", "test.js"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "esModuleInterop": true
+  }
+}
