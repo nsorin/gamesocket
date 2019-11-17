@@ -10,6 +10,7 @@ export default class Server {
     constructor(port: number) {
         this._port = port
         this._io = SocketIO(this._port)
+        this._io.origins('*:*')
     }
 
     /**

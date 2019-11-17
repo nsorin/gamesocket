@@ -12,6 +12,6 @@ export default abstract class SocketEvent {
         return this._name
     }
 
-    public abstract handle(data: Object, socket: SocketIO.Socket): void;
+    public abstract handle(data: Object, io: SocketIO.Server, socket: SocketIO.Socket): void;
 
 }

@@ -7,7 +7,7 @@ export default class MessageEvent extends SocketEvent {
         super('message')
     }
 
-    public handle(data: Object, socket: SocketIO.Socket): void {
-        console.log('received message: ' + data)
+    public handle(data: Object, io: SocketIO.Server, socket: SocketIO.Socket): void {
+        console.log('received message:', data)
     }
 }

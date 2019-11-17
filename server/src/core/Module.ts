@@ -17,21 +17,21 @@ export default abstract class Module {
     public listenForEvents(io: SocketIO.Server): void {
         io.of(`/${this._namespace}`).on('connection', (socket: SocketIO.Socket) => {
 
-            this.onConnect(socket)
+            this.onConnect(io, socket)
 
             for (let i in this._events) {
                 socket.on(this._events[i].name, (data: Object) => {
-                    this._events[i].handle(data, socket)
+                    this._events[i].handle(data, io, socket)
                 })
             }
 
             socket.on('disconnect', () => {
-                this.onDisconnect(socket)
+                this.onDisconnect(io, socket)
             })
         })
     }
 
-    protected abstract onConnect(socket: SocketIO.Socket): void
+    protected abstract onConnect(io: SocketIO.Server, socket: SocketIO.Socket): void
 
-    protected abstract onDisconnect(socket: SocketIO.Socket): void
+    protected abstract onDisconnect(io: SocketIO.Server, socket: SocketIO.Socket): void
 }

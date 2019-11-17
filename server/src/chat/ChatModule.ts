@@ -9,11 +9,11 @@ export default class ChatModule extends Module {
         this._events.push(new MessageEvent())
     }
 
-    protected onConnect(socket: SocketIO.Socket) {
+    protected onConnect(io: SocketIO.Server, socket: SocketIO.Socket) {
         console.log("Connected to chat")
     }
 
-    protected onDisconnect(socket: SocketIO.Socket) {
+    protected onDisconnect(io: SocketIO.Server, socket: SocketIO.Socket) {
         console.log("Disconnected from chat")
     }
 }
