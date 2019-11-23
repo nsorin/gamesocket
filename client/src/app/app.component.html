@@ -1,5 +1,5 @@
 <app-topbar (chatToggle)="toggleChat()" ></app-topbar>
-
-{{ showChat }}
-
+  
 <router-outlet></router-outlet>
+
+<chat [open]="showChat"></chat>

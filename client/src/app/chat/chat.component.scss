@@ -1,0 +1,26 @@
+.chat-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    transition: width 0.2s ease-in;
+    z-index: 9;
+}
+
+.chat-panel-open {
+    width: 400px;
+    padding: 75px 20px;
+}
+
+form.chat-form {
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    left: 0;
+    right: 0;
+
+    .input-group {
+        width: 100% !important;
+    }
+}

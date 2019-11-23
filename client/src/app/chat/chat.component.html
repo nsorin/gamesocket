@@ -1,0 +1,13 @@
+<div class="chat-panel bg-light" [ngClass]="{'chat-panel-open': open}">
+    <h4>Chat</h4>
+    <form class="chat-form form-inline" [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+        <div class="input-group">
+            <input type="text" formControlName="message" class="form-control" placeholder="Your message here..."/>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary" [disabled]="!chatForm.valid">
+                    <i class="far fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
