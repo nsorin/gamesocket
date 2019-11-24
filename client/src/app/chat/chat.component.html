@@ -2,7 +2,7 @@
     <h4 class="font-light">Chat</h4>
     <div #messageContainer class="message-container bg-light">
         <p *ngFor="let message of messages">
-            <strong>{{ message.author }}</strong> - {{ message.content }}
+            <strong>{{ message.author }}</strong>: {{ message.content }}
         </p>
     </div>
     <form class="chat-form form-inline bg-light" [formGroup]="chatForm" (ngSubmit)="sendMessage()">

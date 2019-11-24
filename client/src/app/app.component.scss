@@ -1,1 +1,11 @@
- 
+.app-content {
+    padding-top: 80px;
+    padding-bottom: 50px;
+    padding-right: 40px;
+    padding-left: 40px;
+    transition: padding-right 0.1s ease-in;
+
+    &.reduced {
+        padding-right: 440px;
+    }
+}

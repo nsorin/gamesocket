@@ -1,5 +1,7 @@
 <app-topbar (chatToggle)="toggleChat()" ></app-topbar>
-  
-<router-outlet></router-outlet>
+
+<div class="app-content" [ngClass]="{reduced: showChat}">
+    <router-outlet></router-outlet>
+</div>
 
 <chat [open]="showChat"></chat>
