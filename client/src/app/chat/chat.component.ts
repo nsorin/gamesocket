@@ -19,6 +19,11 @@ export class ChatComponent implements AfterViewChecked {
     this._open = open
     if (open) {
       this.messageInputRef.nativeElement.focus()
+    } else {
+      try {
+        this.messageInputRef.nativeElement.blur()
+        this.chatForm.reset()
+      } catch (err) {}
     }
   }
 
