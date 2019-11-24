@@ -1,8 +1,13 @@
-<div class="chat-panel bg-light" [ngClass]="{'chat-panel-open': open}">
-    <h4>Chat</h4>
-    <form class="chat-form form-inline" [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+<div class="chat-panel bg-dark" [ngClass]="{'chat-panel-open': open}">
+    <h4 class="font-light">Chat</h4>
+    <div #messageContainer class="message-container bg-light">
+        <p *ngFor="let message of messages">
+            <strong>{{ message.author }}</strong> - {{ message.content }}
+        </p>
+    </div>
+    <form class="chat-form form-inline bg-light" [formGroup]="chatForm" (ngSubmit)="sendMessage()">
         <div class="input-group">
-            <input type="text" formControlName="message" class="form-control" placeholder="Your message here..."/>
+            <input #messageInput type="text" formControlName="message" class="form-control" placeholder="Your message here..."/>
             <div class="input-group-append">
                 <button type="submit" class="btn btn-primary" [disabled]="!chatForm.valid">
                     <i class="far fa-paper-plane"></i>
