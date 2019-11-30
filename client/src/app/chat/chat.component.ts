@@ -49,7 +49,7 @@ export class ChatComponent implements AfterViewChecked {
     let message = new Message()
     message.author = "Me"
     message.content = this.chatForm.value.message  
-    this.messageService.addMessage(message)
+    this.messageService.sendMessage(message)
     this.chatForm.reset()
   }
 

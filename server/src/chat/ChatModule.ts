@@ -5,7 +5,7 @@ import MessageEvent from './events/MessageEvent'
 export default class ChatModule extends Module {
 
     constructor() {
-        super('chat')
+        super('')
         this._events.push(new MessageEvent())
     }
 

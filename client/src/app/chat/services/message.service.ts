@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Message from '../models/message'
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ export class MessageService {
 
   private _messages: Array<Message> = []
   
-  constructor() { }
+  constructor(private _socket: Socket) { 
+    this.listen()
+  }
 
   get messages(): Array<Message> {
     return this._messages
@@ -18,8 +21,8 @@ export class MessageService {
    * Add a message at the end of the list
    * @param message 
    */
-  public addMessage(message: Message): void {
-    this._messages.push(message)
+  public sendMessage(message: Message): void {
+    this._socket.emit('message', message)
   }
 
   /**
@@ -27,5 +30,17 @@ export class MessageService {
    */
   public clearMessages(): void {
     this._messages.splice(0, this._messages.length)
+  }
+
+  /**
+   * Listen to the Socket IO connection for new messages
+   */
+  private listen(): void {
+    this._socket.on('message', (data: any) => {
+      let message = new Message()
+      message.author = data.author || "(Anonymous)"
+      message.content = data.content
+      this._messages.push(message)
+    })
   }
 }

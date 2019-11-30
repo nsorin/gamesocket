@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 const ESCAPE_KEYCODE = 27
 
@@ -7,7 +8,7 @@ const ESCAPE_KEYCODE = 27
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   
   showChat: Boolean = false
 
@@ -27,5 +28,13 @@ export class AppComponent {
 
   toggleChat(): void {
     this.showChat = !this.showChat
+  }
+
+  constructor(private _socket: Socket) {}
+
+  ngOnInit(): void {
+    this._socket.on('connect', () => {
+      console.log("connected")
+    })
   }
 }
