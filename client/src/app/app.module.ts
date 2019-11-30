@@ -8,6 +8,8 @@ import { ChatModule } from './chat/chat.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -16,12 +18,14 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     AppComponent,
     TopbarComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SocketIoModule.forRoot(config),
+    ReactiveFormsModule,
     ChatModule
   ],
   providers: [],

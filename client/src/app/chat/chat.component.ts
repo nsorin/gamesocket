@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageService } from './services/message.service';
+import { UserService } from '../user.service';
 import Message from './models/message';
 
 @Component({
@@ -32,14 +33,14 @@ export class ChatComponent implements AfterViewChecked {
   }
 
   get messages(): Array<Message> {
-    return this.messageService.messages
+    return this._messageService.messages
   }
   
   chatForm = new FormGroup({
     message: new FormControl('', Validators.required)
   });
 
-  constructor(private messageService: MessageService) {}
+  constructor(private _messageService: MessageService, private _userService: UserService) {}
 
   ngAfterViewChecked() {        
     this.scrollToBottom();        
@@ -47,9 +48,9 @@ export class ChatComponent implements AfterViewChecked {
 
   sendMessage() {
     let message = new Message()
-    message.author = "Me"
+    message.author = this._userService.userName
     message.content = this.chatForm.value.message  
-    this.messageService.sendMessage(message)
+    this._messageService.sendMessage(message)
     this.chatForm.reset()
   }
 

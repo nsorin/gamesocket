@@ -1,0 +1,17 @@
+.login {
+    position: fixed;
+    background-color: white;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    
+    .login-input {
+        max-width: 600px;
+    }
+    
+    .login-jumbotron {
+        margin: 5em;
+    }
+}

@@ -1,0 +1,19 @@
+<div class="login">
+    <div class="jumbotron login-jumbotron">
+        <h1 class="display-4">GameSocket</h1>
+        <p class="lead">Please enter your name so others can identify you</p>
+        <hr class="my-4">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="input-group login-input">
+                    <input autofocus formControlName="userName" type="text" class="form-control" placeholder="Your name here..."/>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            Start playing!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>       
+</div>
