@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar.component';
 import { ChatModule } from './chat/chat.module';
+import { TicTacToeModule } from './tic-tac-toe/tic-tac-toe.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
 
@@ -26,7 +28,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
     AppRoutingModule,
     SocketIoModule.forRoot(config),
     ReactiveFormsModule,
-    ChatModule
+    NgbModule,
+    ChatModule,
+    TicTacToeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

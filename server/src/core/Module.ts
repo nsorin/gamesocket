@@ -1,5 +1,7 @@
 import SocketIO from 'socket.io'
 import SocketEvent from './SocketEvent';
+import UserManager from './user/UserManager';
+import User from './user/User';
 
 export default abstract class Module {
     
@@ -17,21 +19,23 @@ export default abstract class Module {
     public listenForEvents(io: SocketIO.Server): void {
         io.of(`/${this._namespace}`).on('connection', (socket: SocketIO.Socket) => {
 
-            this.onConnect(io, socket)
+            let user = UserManager.getInstance().resolve(socket)
+            
+            this.onConnect(io, user)
 
             for (let i in this._events) {
                 socket.on(this._events[i].name, (data: Object) => {
-                    this._events[i].handle(data, io, socket)
+                    this._events[i].handle(data, io, user)
                 })
             }
 
             socket.on('disconnect', () => {
-                this.onDisconnect(io, socket)
+                this.onDisconnect(io, user)
             })
         })
     }
 
-    protected abstract onConnect(io: SocketIO.Server, socket: SocketIO.Socket): void
+    protected abstract onConnect(io: SocketIO.Server, user: User): void
 
-    protected abstract onDisconnect(io: SocketIO.Server, socket: SocketIO.Socket): void
+    protected abstract onDisconnect(io: SocketIO.Server, user: User): void
 }

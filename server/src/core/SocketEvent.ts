@@ -1,4 +1,5 @@
 import SocketIO from 'socket.io'
+import User from './user/User'
 
 export default abstract class SocketEvent {
 
@@ -12,6 +13,6 @@ export default abstract class SocketEvent {
         return this._name
     }
 
-    public abstract handle(data: Object, io: SocketIO.Server, socket: SocketIO.Socket): void;
+    public abstract handle(data: Object, io: SocketIO.Server, user: User): void;
 
 }
