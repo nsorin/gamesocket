@@ -1,0 +1,11 @@
+version: '3.2'
+
+services:
+    gsserver:
+        build: ./server
+        ports:
+            - 8080:8080
+    gsclient:
+        build: ./client
+        ports:
+            - 4200:4200
