@@ -1,16 +1,21 @@
-import Repository from "../common/Repository"
-import User from "../user/User"
-import Identifiable from "../common/Identifiable"
+import Repository from "./common/Repository"
+import User from "./user/User"
+import Identifiable from "./common/Identifiable"
 
-export default class Room implements Identifiable {
+/**
+ * @class Room
+ * Abstraction for the concept of Room in SocketIO. Used to keep track of the users in the room
+ * and execute specific actions related to the room.
+ */
+export default abstract class Room implements Identifiable {
     
-    private _users: Repository<User> = new Repository<User>()
+    protected _users: Repository<User> = new Repository<User>()
 
     get capacity(): number {
         return this._capacity
     }
 
-    constructor(private _name: string, private _capacity: number) {}
+    constructor(protected _name: string, protected _capacity: number) {}
 
     /**
      * The key is the room name
@@ -23,7 +28,7 @@ export default class Room implements Identifiable {
      * Try adding a user to the room. Return true if successful, false if not.
      * @param user The user to add
      */
-    public addUserToRoom(user: User): boolean {
+    public addUser(user: User): boolean {
         if (this._users.count >= this._capacity) {
             return false
         }
@@ -36,7 +41,7 @@ export default class Room implements Identifiable {
      * Try removing a user from the room. Return true if successful, false if not.
      * @param user The user to add
      */
-    public removeUserFromRoom(user: User): boolean {
+    public removeUser(user: User): boolean {
         if (this._users.pull(user.getKey())) {
             user.leave(this._name)
             return true

@@ -42,6 +42,23 @@ export default class Repository<T extends Identifiable> {
     }
 
     /**
+     * Find all items by a specific attribute
+     * @param attribute Attribute to check
+     * @param value Desired value
+     */
+    public findAllBy(attribute: string, value: any): Array<T> {
+        let items = []
+        
+        for (let key in this._items) {
+            if (this._items.hasOwnProperty(key) && this._items[key][attribute] === value) {
+                items.push(this._items[key])
+            }
+        }
+
+        return items
+    }
+
+    /**
      * Pull an item from the repository, removing it from the list
      * 
      * @param key The key of the identifiable item

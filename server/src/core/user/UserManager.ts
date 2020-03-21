@@ -4,6 +4,10 @@ import { Socket } from "socket.io";
 
 const ANONYMOUS_NAME: string = '[anonymous]'
 
+/**
+ * @class UserManager
+ * Singleton class used to keep track of connected users. Can be used by any module to retrieve users.
+ */
 export default class UserManager {
     
     private static _instance: UserManager;

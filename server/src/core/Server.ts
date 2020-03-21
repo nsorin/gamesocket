@@ -1,6 +1,10 @@
 import SocketIO from 'socket.io'
 import Module from './Module'
 
+/**
+ * @class Server
+ * The central SocketIO Server, which coordinates all modules.
+ */
 export default class Server {
     
     private _io: SocketIO.Server
