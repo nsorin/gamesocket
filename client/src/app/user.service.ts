@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Socket } from 'ngx-socket-io';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,14 @@ export class UserService {
   }
 
   set userName(userName: string) {
-    this._userName = userName
-    localStorage.setItem('userName', userName)
+    if (userName) {
+      this._userName = userName
+      localStorage.setItem('userName', userName)
+      this._socket.emit('userName', {name: userName})
+    }
   }
 
-  constructor() {
-    this._userName = localStorage.getItem('userName')
+  constructor(private _socket: Socket) {
+    this.userName = localStorage.getItem('userName')
   }
 }

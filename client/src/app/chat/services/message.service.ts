@@ -38,7 +38,7 @@ export class MessageService {
   private listen(): void {
     this._socket.on('message', (data: any) => {
       let message = new Message()
-      message.author = data.author || "(Anonymous)"
+      message.author = data.author
       message.content = data.content
       this._messages.push(message)
     })
