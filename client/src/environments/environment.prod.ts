@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  serverHost: 'debian',
+  serverPort: '8080'
 };

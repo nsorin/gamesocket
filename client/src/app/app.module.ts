@@ -12,8 +12,9 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
-const config: SocketIoConfig = { url: 'http://localhost:8080', options: {} };
+const config: SocketIoConfig = { url: `http://${environment.serverHost}:${environment.serverPort}`, options: {} };
 
 @NgModule({
   declarations: [

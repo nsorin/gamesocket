@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12 as build-stage
 
 WORKDIR /usr/src/app
 
@@ -10,7 +10,9 @@ COPY src ./src
 COPY e2e ./e2e
 
 RUN npm install
+RUN ng build --prod
 
-EXPOSE 4200
+FROM nginx:1.15
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+COPY --from=build-stage /usr/src/app/dist/client /usr/share/nginx/html
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
