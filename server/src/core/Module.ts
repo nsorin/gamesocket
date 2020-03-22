@@ -15,14 +15,14 @@ export default abstract class Module {
     
     protected _events: Array<SocketEvent> = []
     
-    constructor(protected _namespace: string) {}
+    constructor(protected _name: string) {}
 
     /**
      * Listen to all events of this namespace
      * @param io SocketIO Server
      */
     public listenForEvents(io: SocketIO.Server): void {
-        io.of(`/${this._namespace}`).on('connection', (socket: SocketIO.Socket) => {
+        io.on('connection', (socket: SocketIO.Socket) => {
 
             this.onConnect(io, socket)
 

@@ -7,12 +7,12 @@ import Room from '../core/Room';
 export default class ChatModule extends Module {
 
     constructor() {
-        super('')
+        super('chat')
         this._events.push(new MessageEvent())
     }
 
     protected onConnect(io: SocketIO.Server, socket: SocketIO.Socket) {
-        console.log("Connected to chat")
+        console.log("Connected to chat:", socket.id)
     }
 
     protected onDisconnect(io: SocketIO.Server, socket: SocketIO.Socket) {

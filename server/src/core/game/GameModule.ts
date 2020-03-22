@@ -36,7 +36,7 @@ export default abstract class GameModule extends Module{
      */
     protected onConnect(io: SocketIO.Server, socket: SocketIO.Socket) {
         let openRooms = this._rooms.findAllBy('open', true)
-        socket.emit('openRooms', {openRooms})
+        socket.emit(this._name + '-openRooms', {openRooms})
     }
 
     /**

@@ -10,12 +10,12 @@ import Room from "../Room";
 export default class UserModule extends Module {
     
     constructor() {
-        super('')
+        super('user')
         this._events.push(new UserNameEvent())
     }
 
     protected onConnect(io: SocketIO.Server, socket: SocketIO.Socket) {
-        console.log("Connected to user module")
+        console.log("Connected to user module:", socket.id)
     }
 
     protected onDisconnect(io: SocketIO.Server, socket: SocketIO.Socket) {
